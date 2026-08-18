@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <meta name="description" content="Golf Explorer – Australia's premium golf travel specialists. Curated golf holiday packages in Australia, New Zealand, and worldwide. Crafting memorable golf holidays tailored to your exact needs." />
+  <meta name="keywords" content="golf travel, golf holidays Australia, golf packages, NZ golf tours, Adelaide golf, golf vacations" />
+  <meta property="og:title" content="Golf Explorer – Premium Golf Holiday Packages" />
+  <meta property="og:description" content="Crafting memorable golf holidays tailored to your exact needs. Australia & Worldwide." />
+  <meta property="og:type" content="website" />
+  <title>Golf Explorer – Premium Golf Holidays &amp; Tour Packages in Australia &amp; Worldwide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   GOLF EXPLORER — style.css
+   Premium Luxury Golf Travel Landing Page
+   Pure CSS3 / Zero Frameworks
+   ============================================================ */
+
+/* 1. DESIGN TOKENS */
+:root {
+  --primary-color:   #1E3F20;
+  --secondary-color: #F5F5F0;
+  --accent-color:    #C5A880;
+  --text-dark:       #1F2937;
+  --text-light:      #FFFFFF;
+  --primary-light:   #2d5c30;
+  --primary-deep:    #142d16;
+  --accent-light:    #d4bb9a;
+  --accent-deep:     #a8895e;
+  --surface-white:   #FFFFFF;
+  --surface-grey:    #f8f8f6;
+  --border-subtle:   rgba(30,63,32,0.10);
+  --border-card:     rgba(197,168,128,0.22);
+  --shadow-sm:       0 2px 10px rgba(30,63,32,0.08);
+  --shadow-md:       0 6px 30px rgba(30,63,32,0.13);
+  --shadow-lg:       0 16px 56px rgba(30,63,32,0.18);
+  --shadow-card:     0 4px 20px rgba(31,41,55,0.10);
+  --shadow-card-hover: 0 12px 40px rgba(31,41,55,0.18);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  3.75rem;
+  --text-hero: clamp(2.25rem, 5vw, 4.5rem);
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --container-max: 1240px;
+  --container-pad: clamp(1rem, 5vw, 3rem);
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:  150ms;
+  --dur-base:  260ms;
+  --dur-slow:  420ms;
+  --dur-reveal: 700ms;
+  --header-h: 72px;
+}
+
+/* 2. RESET & BASE */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font-sans); color: var(--text-dark); background-color: var(--surface-white); line-height: 1.65; overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul[role="list"] { list-style: none; }
+button { cursor: pointer; font-family: inherit; }
+address { font-style: normal; }
+strong { font-weight: 600; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* 3. LAYOUT */
+.container { width: 100%; max-width: var(--container-max); margin-inline: auto; padding-inline: var(--container-pad); }
+
+/* 4. SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); }
+.reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+/* Stunning 3D god-animation */
+.perspective-container { perspective: 1200px; }
+.reveal-3d { 
+  opacity: 0; 
+  transform: rotateX(25deg) translateY(60px) translateZ(-60px) scale(0.92); 
+  transform-origin: bottom center;
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.reveal-3d.is-visible { 
+  opacity: 1; 
+  transform: rotateX(0) translateY(0) translateZ(0) scale(1); 
+}
+
+.reveal-delay-1 { transition-delay: 150ms; }
+.reveal-delay-2 { transition-delay: 300ms; }
+
+/* 5. TYPOGRAPHY */
+.section-eyebrow { display: inline-block; font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-color); margin-bottom: var(--space-3); }
+.eyebrow-light { color: var(--accent-light); }
+.section-h2 { font-family: var(--font-serif); font-size: clamp(var(--text-3xl), 3.5vw, var(--text-4xl)); font-weight: 700; color: var(--text-dark); line-height: 1.2; margin-bottom: var(--space-4); }
+.section-sub { font-size: var(--text-lg); color: #4b5563; max-width: 580px; line-height: 1.7; }
+.section-header { text-align: center; margin-bottom: var(--space-12); }
+.section-header .section-sub { margin-inline: auto; }
+.body-lg { font-size: var(--text-lg); color: #374151; line-height: 1.75; margin-bottom: var(--space-5); }
+
+/* 6. BUTTON SYSTEM */
+.btn { display: inline-flex; align-items: center; gap: var(--space-2); padding: 0.75rem 1.75rem; border-radius: 4px; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 2px solid transparent; cursor: pointer; transition: background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); white-space: nowrap; text-decoration: none; }
+.btn:hover  { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 3px solid var(--accent-color); outline-offset: 3px; }
+.btn-primary { background-color: var(--primary-color); color: var(--text-light); border-color: var(--primary-color); }
+.btn-primary:hover { background-color: var(--primary-light); border-color: var(--primary-light); box-shadow: var(--shadow-md); }
+.btn-sm { padding: 0.55rem 1.25rem; font-size: var(--text-xs); }
+.btn-hero { background-color: var(--accent-color); color: var(--primary-deep); border-color: var(--accent-color); padding: 1rem 2.25rem; font-size: var(--text-base); }
+.btn-hero:hover { background-color: var(--accent-light); border-color: var(--accent-light); box-shadow: 0 8px 28px rgba(197,168,128,0.45); }
+.btn-outline { background-color: transparent; color: var(--primary-color); border-color: var(--primary-color); }
+.btn-outline:hover { background-color: var(--primary-color); color: var(--text-light); box-shadow: var(--shadow-md); }
+.btn-gold { background-color: var(--accent-color); color: var(--primary-deep); border-color: var(--accent-color); }
+.btn-gold:hover { background-color: var(--accent-light); border-color: var(--accent-light); box-shadow: 0 6px 22px rgba(197,168,128,0.40); }
+.btn-card { background-color: transparent; color: var(--primary-color); border: 1.5px solid var(--border-card); padding: 0.55rem 1.25rem; font-size: var(--text-xs); border-radius: 3px; width: 100%; justify-content: center; margin-top: var(--space-4); }
+.btn-card:hover { background-color: var(--primary-color); color: var(--text-light); border-color: var(--primary-color); }
+
+/* 7. HEADER / NAV */
+#site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background-color var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out), backdrop-filter var(--dur-slow) var(--ease-out); }
+#site-header.header-transparent { background-color: transparent; }
+#site-header.header-scrolled { background-color: rgba(255,255,255,0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--border-subtle), var(--shadow-sm); }
+.nav-container { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); height: var(--header-h); padding-inline: var(--container-pad); max-width: var(--container-max); margin-inline: auto; }
+.nav-brand { display: flex; align-items: center; gap: var(--space-2); text-decoration: none; transition: opacity var(--dur-fast); flex-shrink: 0; }
+.nav-brand:hover { opacity: 0.82; }
+.brand-logo { height: 48px; width: auto; transition: opacity var(--dur-fast); }
+.nav-links { display: flex; align-items: center; gap: var(--space-8); list-style: none; }
+.nav-link { font-size: var(--text-sm); font-weight: 500; letter-spacing: 0.04em; color: rgba(255,255,255,0.88); text-decoration: none; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color var(--dur-base), border-color var(--dur-base); }
+.nav-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+#site-header.header-scrolled .nav-link { color: var(--text-dark); }
+#site-header.header-scrolled .nav-link:hover { color: var(--primary-color); border-bottom-color: var(--accent-color); }
+.nav-actions { display: flex; align-items: center; gap: var(--space-5); flex-shrink: 0; }
+.nav-phone { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); font-weight: 500; color: rgba(255,255,255,0.88); text-decoration: none; transition: color var(--dur-base); }
+.nav-phone:hover { color: var(--accent-color); }
+#site-header.header-scrolled .nav-phone { color: var(--text-dark); }
+#site-header.header-scrolled .nav-phone:hover { color: var(--primary-color); }
+.nav-hamburger { display: none; flex-direction: column; justify-content: space-between; width: 26px; height: 18px; background: transparent; border: none; padding: 0; cursor: pointer; }
+.hamburger-bar { display: block; height: 2px; background-color: var(--text-light); border-radius: 2px; transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base), background-color var(--dur-base); }
+#site-header.header-scrolled .hamburger-bar { background-color: var(--text-dark); }
+.nav-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(2) { opacity: 0; }
+.nav-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.mobile-menu { display: none; flex-direction: column; gap: var(--space-4); padding: var(--space-6) var(--container-pad) var(--space-8); background-color: var(--surface-white); border-top: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); max-height: 0; overflow: hidden; opacity: 0; transition: max-height var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out), padding var(--dur-slow) var(--ease-out); }
+.mobile-menu.is-open { max-height: 500px; opacity: 1; }
+.mobile-menu ul { display: flex; flex-direction: column; gap: var(--space-2); }
+.mobile-link { display: block; padding: var(--space-3) 0; font-size: var(--text-lg); font-weight: 500; color: var(--text-dark); border-bottom: 1px solid var(--border-subtle); transition: color var(--dur-fast), padding-left var(--dur-fast); }
+.mobile-link:hover { color: var(--primary-color); padding-left: var(--space-2); }
+.mobile-phone { font-size: var(--text-base); font-weight: 600; color: var(--primary-color); display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); }
+.mobile-cta { margin-top: var(--space-2); width: fit-content; }
+
+/* 8. HERO */
+#hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+.hero-slider { position: absolute; inset: 0; z-index: 0; }
+.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center 30%; background-color: var(--text-dark); opacity: 0; transition: opacity 1.2s ease-in-out, transform 8s ease-out; transform: scale(1.05); }
+.hero-slide.active { opacity: 1; transform: scale(1); z-index: 1; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(14,28,16,0.88) 0%, rgba(20,45,22,0.62) 50%, rgba(30,63,32,0.28) 100%), linear-gradient(to top, rgba(14,28,16,0.72) 0%, transparent 55%); z-index: 2; }
+.hero-content { position: relative; z-index: 3; max-width: 760px; padding: var(--space-8) var(--container-pad); margin-left: clamp(1rem, 10vw, 140px); padding-top: calc(var(--header-h) + var(--space-8)); }
+.hero-eyebrow { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-color); margin-bottom: var(--space-5); display: flex; align-items: center; gap: var(--space-3); }
+.hero-eyebrow::before { content: ''; display: block; width: 36px; height: 1.5px; background-color: var(--accent-color); flex-shrink: 0; }
+.hero-h1 { font-family: var(--font-serif); font-size: var(--text-hero); font-weight: 700; color: var(--text-light); line-height: 1.12; letter-spacing: -0.015em; margin-bottom: var(--space-6); max-width: 700px; }
+.hero-sub { font-size: var(--text-xl); color: rgba(255,255,255,0.82); font-weight: 300; margin-bottom: var(--space-10); max-width: 520px; line-height: 1.65; }
+.hero-cta-group { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+.hero-package-info { 
+  position: absolute; right: var(--container-pad); bottom: var(--space-12); z-index: 3; 
+  width: 100%; max-width: 440px; 
+  background: rgba(14, 28, 16, 0.45); 
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm);
+  padding: var(--space-6) var(--space-6) 0 var(--space-6);
+  text-decoration: none; display: flex; flex-direction: column; gap: var(--space-4);
+  transition: background-color var(--dur-base), border-color var(--dur-base);
+  overflow: hidden;
+}
+.hero-package-info:hover { background: rgba(14, 28, 16, 0.6); border-color: rgba(197,168,128,0.4); }
+
+.hpi-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: var(--space-3); }
+.hpi-slide-indicator { font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: 0.15em; color: rgba(255,255,255,0.6); font-weight: 500; }
+.hpi-controls { display: flex; gap: var(--space-2); }
+.hpi-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.8); cursor: pointer; transition: all var(--dur-fast); }
+.hpi-btn:hover { background: var(--accent-color); color: var(--text-dark); border-color: var(--accent-color); }
+
+.hpi-text-wrapper { display: flex; flex-direction: column; gap: var(--space-1); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0, 0, 1); padding-bottom: var(--space-5); }
+.hpi-animating-out { opacity: 0; transform: translateY(-12px); }
+.hpi-animating-in { opacity: 0; transform: translateY(12px); }
+
+.hpi-title { font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700; color: var(--text-light); line-height: 1.1; margin-bottom: var(--space-1); }
+.hpi-tagline { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-color); margin-bottom: var(--space-2); }
+.hpi-pkg-name { font-size: var(--text-sm); font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 2px; }
+.hpi-pkg-price { font-size: var(--text-xs); color: rgba(255,255,255,0.6); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-4); }
+.hpi-pkg-price strong { color: var(--text-light); font-size: var(--text-sm); font-weight: 600; }
+.hpi-cta { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-color); transition: transform var(--dur-fast); display: flex; align-items: center; gap: var(--space-2); margin-top: auto; }
+.hero-package-info:hover .hpi-cta { transform: translateX(6px); }
+
+.hpi-progress-track { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.1); }
+.hpi-progress-bar { height: 100%; width: 0%; background: var(--accent-color); }
+.hpi-progress-bar.is-animating { animation: progressFill var(--slide-dur, 6s) linear forwards; }
+.hero-package-info:hover .hpi-progress-bar.is-animating { animation-play-state: paused; }
+@keyframes progressFill { from { width: 0%; } to { width: 100%; } }
+
+.scroll-indicator { position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%); z-index: 3; }
+.scroll-dot { display: block; width: 22px; height: 36px; border: 2px solid rgba(255,255,255,0.45); border-radius: 20px; position: relative; }
+.scroll-dot::after { content: ''; position: absolute; left: 50%; top: 6px; width: 4px; height: 8px; background-color: var(--accent-color); border-radius: 3px; transform: translateX(-50%); animation: scrollBounce 2s ease-in-out infinite; }
+@keyframes scrollBounce { 0%, 100% { top: 6px; opacity: 1; } 60% { top: 18px; opacity: 0.4; } }
+
+/* 9. INTRO */
+#intro { padding-block: var(--space-24); background-color: var(--secondary-color); }
+.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items: center; }
+.intro-copy { padding-right: var(--space-8); }
+.intro-copy .section-eyebrow { margin-bottom: var(--space-2); }
+.intro-copy .section-h2 { margin-bottom: var(--space-6); }
+.intro-copy .btn { margin-top: var(--space-4); }
+.intro-card-wrap { display: flex; justify-content: flex-start; }
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); box-shadow: var(--shadow-lg); }
+  50% { transform: translateY(-8px); box-shadow: 0 20px 40px -8px rgba(0,0,0,0.12); }
+}
+.endorsement-card { background-color: var(--surface-white); border-radius: var(--radius-lg); padding: var(--space-10); box-shadow: var(--shadow-lg); border: 1px solid var(--border-card); width: 100%; max-width: 460px; position: relative; overflow: hidden; animation: floatCard 8s ease-in-out infinite; will-change: transform, box-shadow; }
+.endorsement-card::before { content: '"'; position: absolute; top: -10px; right: var(--space-8); font-family: var(--font-serif); font-size: 9rem; color: var(--secondary-color); line-height: 1; pointer-events: none; z-index: 0; }
+.endorsement-stars { color: var(--accent-color); font-size: 1.35rem; letter-spacing: 2px; margin-bottom: var(--space-5); position: relative; z-index: 1; }
+.endorsement-quote { position: relative; z-index: 1; border: none; padding: 0; margin-bottom: var(--space-6); }
+.endorsement-quote p { font-family: var(--font-serif); font-style: italic; font-size: var(--text-xl); color: var(--text-dark); line-height: 1.65; }
+.endorsement-author { display: flex; align-items: center; gap: var(--space-4); position: relative; z-index: 1; padding-top: var(--space-5); border-top: 1px solid var(--border-subtle); }
+.author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); color: var(--text-light); display: flex; align-items: center; justify-content: center; font-size: var(--text-sm); font-weight: 700; flex-shrink: 0; }
+.author-avatar.small { width: 44px; height: 44px; font-size: var(--text-xs); }
+.author-info { display: flex; flex-direction: column; gap: 2px; }
+.author-info strong { font-size: var(--text-sm); font-weight: 600; color: var(--text-dark); }
+.author-info span { font-size: var(--text-xs); color: #6b7280; line-height: 1.4; }
+
+/* 10. PACKAGES — warm sandy linen texture (matches original Golf Explorer site) */
+#packages {
+  padding-block: var(--space-24);
+  /* Warm greige base — sampled from the original site */
+  background-color: #d4cfc0;
+  /* Linen crosshatch texture: fine horizontal + vertical threads as SVG data URI */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23d4cfc0'/%3E%3Crect x='0' y='0' width='4' height='1' fill='%23c9c4b5' opacity='0.45'/%3E%3Crect x='0' y='0' width='1' height='4' fill='%23c9c4b5' opacity='0.45'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='8' fill='none'/%3E%3Cline x1='0' y1='0' x2='8' y2='8' stroke='%23bbb6a6' stroke-width='0.4' opacity='0.3'/%3E%3Cline x1='8' y1='0' x2='0' y2='8' stroke='%23bbb6a6' stroke-width='0.4' opacity='0.18'/%3E%3C/svg%3E");
+  background-size: 4px 4px, 8px 8px;
+  background-repeat: repeat;
+}
+.packages-category { margin-bottom: var(--space-16); }
+.packages-category:last-child { margin-bottom: 0; }
+.category-label { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-deep); border-left: 3px solid var(--accent-color); padding-left: var(--space-4); margin-bottom: var(--space-8); display: flex; align-items: center; }
+/* Ensure headings and subtext read clearly on the linen background */
+#packages .section-h2 { color: var(--primary-deep); }
+#packages .section-sub { color: #4a4438; }
+#packages .section-eyebrow { color: var(--accent-deep); }
+.packages-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
+.packages-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.package-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(180,170,150,0.30);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 14px rgba(80,65,45,0.14), 0 1px 3px rgba(80,65,45,0.08);
+  transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out);
+  will-change: transform;
+}
+.package-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 50px rgba(80,65,45,0.20), 0 4px 12px rgba(80,65,45,0.10);
+  border-color: rgba(197,168,128,0.45);
+}
+.package-card:hover .card-image { transform: scale(1.04); }
+.card-image { height: 220px; background-size: cover; background-position: center; position: relative; flex-shrink: 0; transition: transform var(--dur-slow) var(--ease-out); will-change: transform; }
+/* Package card images — AI-generated (local) + Unsplash CDN */
+.card-img-1 { background-color: #3d6b40; background-image: url('images/card-nz-north.jpg'); }
+.card-img-2 { background-color: #2a4a6e; background-image: url('images/card-queenstown.jpg'); }
+.card-img-3 { background-color: #7a5c2a; background-image: url('images/card-barossa.jpg'); }
+.card-img-4 { background-color: #1e3f20; background-image: url('images/card-liv.jpg'); }
+.card-img-5 { background-color: #3a4e3e; background-image: url('images/card-barnbougle.jpg'); }
+.card-img-6 { background-color: #1a5c7a; background-image: url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80'); }
+.card-img-7 { background-color: #2e4a31; background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=800&q=80'); }
+.card-image::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to top, rgba(10,20,12,0.55) 0%, transparent 100%); }
+.card-body { padding: var(--space-6); display: flex; flex-direction: column; flex-grow: 1; }
+.card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3); }
+.card-duration { display: flex; align-items: center; gap: 5px; font-size: var(--text-xs); color: #6b7280; font-weight: 500; }
+.card-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background-color: var(--secondary-color); color: var(--primary-color); border: 1px solid var(--border-card); padding: 2px 8px; border-radius: 20px; }
+.card-title { font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--text-dark); line-height: 1.35; margin-bottom: var(--space-3); flex-grow: 1; }
+.card-price { font-size: var(--text-sm); color: #6b7280; margin-bottom: 0; }
+.card-price strong { font-size: var(--text-xl); font-weight: 700; color: var(--primary-color); }
+.card-price span { font-size: var(--text-xs); }
+
+/* 11. FEATURES */
+#features { padding-block: var(--space-24); background-color: var(--primary-color); position: relative; overflow: hidden; }
+#features::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(197,168,128,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 10% 10%, rgba(255,255,255,0.04) 0%, transparent 60%); pointer-events: none; }
+#features .section-h2 { color: var(--text-light); }
+#features .section-eyebrow { color: var(--accent-light); }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+.feature-card { background-color: rgba(255,255,255,0.06); border: 1px solid rgba(197,168,128,0.18); border-radius: var(--radius-md); padding: var(--space-10) var(--space-8); transition: background-color var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
+.feature-card:hover { background-color: rgba(255,255,255,0.10); border-color: rgba(197,168,128,0.40); transform: translateY(-4px); }
+.feature-icon { width: 60px; height: 60px; border-radius: var(--radius-md); background-color: rgba(197,168,128,0.15); border: 1px solid rgba(197,168,128,0.25); display: flex; align-items: center; justify-content: center; color: var(--accent-color); margin-bottom: var(--space-6); transition: background-color var(--dur-base), transform var(--dur-base); }
+.feature-card:hover .feature-icon { background-color: rgba(197,168,128,0.25); transform: scale(1.05); }
+.feature-title { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 600; color: var(--text-light); line-height: 1.3; margin-bottom: var(--space-4); }
+.feature-body { font-size: var(--text-base); color: rgba(255,255,255,0.72); line-height: 1.75; }
+.feature-link { color: var(--accent-color); text-decoration: underline; text-underline-offset: 3px; transition: color var(--dur-fast); }
+.feature-link:hover { color: var(--accent-light); }
+
+/* 12. REVIEWS — infinite marquee slider */
+#reviews {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-20);
+  background-color: var(--secondary-color);
+  overflow: hidden;  /* clip the scrolling track */
+}
+
+/* Marquee outer wrapper: full viewport width, with soft edge fade masks */
+.reviews-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-block: var(--space-6);
+  /* Fade-out edges using a mask gradient */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* Track: single flex row, wide enough for 10 cards (5 + 5 duplicates) */
+.reviews-track {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-6);
+  width: max-content;        /* shrink-wrap to actual content width */
+  animation: marquee-scroll 42s linear infinite;
+}
+
+/* Pause on hover — great for reading */
+.reviews-marquee:hover .reviews-track {
+  animation-play-state: paused;
+}
+
+/* Keyframe: move left by exactly 50% = width of 5 original cards + their gaps */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Individual review cards — fixed width so track math is predictable */
+.review-card {
+  background-color: var(--surface-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* Fixed width — 5 cards × 380px + 4 × 24px gap = 1996px total per set */
+  width: 380px;
+  flex-shrink: 0;
+  transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
+  cursor: default;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.review-stars  { color: var(--accent-color); font-size: 1.1rem; letter-spacing: 2px; }
+.review-text   { font-family: var(--font-serif); font-style: italic; font-size: var(--text-base); color: var(--text-dark); line-height: 1.7; flex-grow: 1; }
+.review-author { display: flex; align-items: center; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle); }
+.review-author strong { display: block; font-size: var(--text-sm); color: var(--text-dark); }
+.review-author span   { font-size: var(--text-xs); color: #9ca3af; }
+
+/* 13. NEWSLETTER */
+#newsletter { padding-block: var(--space-20); background-color: var(--primary-color); position: relative; overflow: hidden; }
+#newsletter::after { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(197,168,128,0.10) 0%, transparent 70%); pointer-events: none; }
+.newsletter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+.newsletter-copy .newsletter-h2 { font-family: var(--font-serif); font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl)); font-weight: 700; color: var(--text-light); line-height: 1.2; margin-bottom: var(--space-4); }
+.newsletter-sub { font-size: var(--text-base); color: rgba(255,255,255,0.70); line-height: 1.7; }
+.newsletter-form { display: flex; flex-direction: column; gap: var(--space-4); }
+.form-group { position: relative; }
+.newsletter-form input { width: 100%; padding: 0.9rem 1.25rem; border: 1.5px solid rgba(197,168,128,0.30); border-radius: 4px; background-color: rgba(255,255,255,0.08); color: var(--text-light); font-family: var(--font-sans); font-size: var(--text-base); transition: border-color var(--dur-base), background-color var(--dur-base); }
+.newsletter-form input::placeholder { color: rgba(255,255,255,0.45); }
+.newsletter-form input:focus { outline: none; border-color: var(--accent-color); background-color: rgba(255,255,255,0.12); }
+.newsletter-form input.input-error { border-color: #f87171; }
+.form-success { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-5); background-color: rgba(197,168,128,0.18); border: 1px solid var(--accent-color); border-radius: 4px; color: var(--accent-light); font-size: var(--text-sm); font-weight: 500; margin-top: var(--space-2); }
+.form-success[hidden] { display: none !important; }
+
+/* 14. BLOGS */
+#blogs { padding-block: var(--space-24); background-color: var(--surface-white); }
+.blogs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+.blog-wrapper { height: 100%; perspective: 1000px; }
+.blog-card { height: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background-color: var(--surface-white); display: flex; flex-direction: column; transform-style: preserve-3d; transition: box-shadow var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out); }
+
+@keyframes card-spin-360 {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.blog-card.is-spinning { animation: card-spin-360 0.9s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: var(--shadow-card-hover); border-color: var(--border-card); }
+.blog-image { height: 200px; background-size: cover; background-position: center; }
+/* Blog card images — Unsplash CDN */
+.blog-img-1 { background-color: #1a4a3a; background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=800&q=80'); background-position: center 40%; }
+.blog-img-2 { background-color: #2a5a40; background-image: url('https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?auto=format&fit=crop&w=800&q=80'); }
+.blog-img-3 { background-color: #6a4010; background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80'); }
+.blog-body { padding: var(--space-6); flex-grow: 1; display: flex; flex-direction: column; }
+.blog-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: var(--space-3); display: block; }
+.blog-title { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 600; color: var(--text-dark); line-height: 1.35; margin-bottom: var(--space-3); }
+.blog-excerpt { font-size: var(--text-sm); color: #6b7280; line-height: 1.7; flex-grow: 1; margin-bottom: var(--space-5); }
+.blog-link { font-size: var(--text-sm); font-weight: 600; color: var(--primary-color); display: inline-flex; align-items: center; gap: 6px; border-bottom: 1.5px solid var(--border-card); padding-bottom: 2px; width: fit-content; transition: color var(--dur-fast), border-color var(--dur-fast), gap var(--dur-fast); }
+.blog-link:hover { color: var(--accent-deep); border-color: var(--accent-color); gap: 10px; }
+
+/* 15. FOOTER */
+.footer-main { background-color: var(--text-dark); padding-block: var(--space-16) var(--space-12); }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--space-10); }
+.footer-col { display: flex; flex-direction: column; gap: var(--space-5); }
+.footer-brand { display: inline-flex; align-items: center; text-decoration: none; transition: opacity var(--dur-fast); }
+.footer-brand-logo { height: 40px; width: auto; }
+.footer-brand:hover { opacity: 0.85; }
+.footer-tagline { font-size: var(--text-sm); color: rgba(255,255,255,0.55); line-height: 1.6; }
+.footer-licence { font-size: var(--text-xs); color: rgba(255,255,255,0.40); letter-spacing: 0.04em; }
+.footer-accred-logos { display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center; }
+.footer-accred-img { height: 36px; width: auto; object-fit: contain; opacity: 0.7; transition: opacity var(--dur-fast); }
+.footer-accred-img:hover { opacity: 1; }
+.footer-col-title { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-color); padding-bottom: var(--space-3); border-bottom: 1px solid rgba(197,168,128,0.20); }
+.footer-links { display: flex; flex-direction: column; gap: var(--space-3); }
+.footer-links a { font-size: var(--text-sm); color: rgba(255,255,255,0.65); text-decoration: none; transition: color var(--dur-fast), padding-left var(--dur-fast); display: inline-block; }
+.footer-links a:hover { color: var(--accent-light); padding-left: 4px; }
+.footer-contact li { display: flex; align-items: flex-start; gap: var(--space-3); color: rgba(255,255,255,0.65); }
+.footer-contact li svg { margin-top: 2px; flex-shrink: 0; color: var(--accent-color); }
+.footer-contact li a { font-size: var(--text-sm); color: rgba(255,255,255,0.65); transition: color var(--dur-fast); padding-left: 0 !important; }
+.footer-contact li a:hover { color: var(--accent-light); }
+.footer-contact li span { font-size: var(--text-sm); }
+.social-links { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.social-icon { width: 40px; height: 40px; border-radius: 50%; background-color: rgba(255,255,255,0.07); border: 1px solid rgba(197,168,128,0.18); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.70); text-decoration: none; transition: background-color var(--dur-base), border-color var(--dur-base), color var(--dur-base), transform var(--dur-fast); }
+.social-icon:hover { background-color: var(--accent-color); border-color: var(--accent-color); color: var(--primary-deep); transform: translateY(-3px); }
+.footer-bottom { background-color: rgba(0,0,0,0.30); padding-block: var(--space-5); border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; }
+.footer-bottom p { font-size: var(--text-xs); color: rgba(255,255,255,0.38); }
+.footer-bottom-links { display: flex; gap: var(--space-6); }
+.footer-bottom-links a { font-size: var(--text-xs); color: rgba(255,255,255,0.38); text-decoration: none; transition: color var(--dur-fast); }
+.footer-bottom-links a:hover { color: var(--accent-color); }
+
+/* 16. RESPONSIVE */
+@media (max-width: 1024px) {
+  :root { --header-h: 64px; }
+  .nav-links { gap: var(--space-6); }
+  .nav-phone { display: none; }
+  .intro-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+  .intro-copy { padding-right: 0; }
+  .intro-card-wrap { justify-content: center; }
+  .endorsement-card { max-width: 100%; }
+  .packages-grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .review-card { width: 340px; }
+  .newsletter-inner { grid-template-columns: 1fr; gap: var(--space-8); }
+  .blogs-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-10); }
+}
+
+@media (max-width: 768px) {
+  :root { --header-h: 60px; }
+  .nav-links { display: none; }
+  .nav-actions { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  #hero { min-height: 100svh; background-attachment: scroll; }
+  .hero-content { margin-left: 0; padding-inline: var(--container-pad); padding-top: calc(var(--header-h) + var(--space-10)); text-align: center; align-items: center; display: flex; flex-direction: column; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-eyebrow::before { display: none; }
+  .hero-sub { max-width: 100%; }
+  .hero-cta-group { justify-content: center; }
+  #intro, #packages, #features, #reviews, #newsletter, #blogs { padding-block: var(--space-16); }
+  .packages-grid { grid-template-columns: 1fr; }
+  .packages-grid--3 { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .review-card { width: 300px; padding: var(--space-6); }
+  .blogs-grid { grid-template-columns: 1fr; }
+  .newsletter-inner { grid-template-columns: 1fr; }
+  .newsletter-form { align-items: stretch; }
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .section-header { text-align: left; }
+  .section-header .section-sub { margin-inline: 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  .hero-sub { font-size: var(--text-base); }
+  .endorsement-card { padding: var(--space-6); }
+  .feature-card { padding: var(--space-6); }
+}
+
+@media (min-width: 1400px) {
+  :root { --container-max: 1360px; }
+}
+
+/* 17. REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal, .reveal-3d, .reveal-left { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+  #hero { background-attachment: scroll; }
+  /* Stop marquee — show as a normal wrapping flex row instead */
+  .reviews-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding-inline: var(--container-pad);
+  }
+  .review-card {
+    min-width: calc(33.333% - var(--space-6));
+    animation: none;
+  }
+  .reviews-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow: visible;
+  }
+  /* Hide duplicate cards from non-animated view */
+  .review-card[aria-hidden="true"] { display: none; }
+  .blog-card.is-spinning { animation: none !important; transform: none !important; }
+}
+
+/* 18. FOCUS */
+:focus-visible { outline: 3px solid var(--accent-color); outline-offset: 3px; border-radius: 2px; }
+
+</style>
+</head>
+<body>
+  <header id="site-header" role="banner">
+    <nav class="nav-container" aria-label="Primary navigation">
+      <a href="#hero" class="nav-brand" aria-label="Golf Explorer – Home">
+        <img src="images/image_transparent.png" alt="Golf Explorer Logo" class="brand-logo" />
+      </a>
+      <ul class="nav-links" role="list" aria-label="Site sections">
+        <li><a href="#intro" class="nav-link">About Us</a></li>
+        <li><a href="#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="#blogs" class="nav-link">Blogs</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="tel:+61883764495" class="nav-phone" aria-label="Call us: +61 8 8376 4495">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.1 19.79 19.79 0 0 1 1.58 3.54a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.62-1.62a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2z"/></svg>
+          +61 8 8376 4495
+        </a>
+        <a href="#packages" class="btn btn-primary btn-sm" id="nav-cta">Browse Packages</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+      <ul role="list">
+        <li><a href="#intro" class="mobile-link">About Us</a></li>
+        <li><a href="#reviews" class="mobile-link">Reviews</a></li>
+        <li><a href="#blogs" class="mobile-link">Blogs</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+      <a href="tel:+61883764495" class="mobile-phone">+61 8 8376 4495</a>
+      <a href="#packages" class="btn btn-primary mobile-cta">Browse Packages</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO -->
+    <section id="hero" aria-label="Hero banner">
+      <div class="hero-slider" id="hero-slider" aria-hidden="true">
+        <!-- Slides generated by JS -->
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content reveal">
+        <p class="hero-eyebrow">Australian Golf Travel Specialists</p>
+        <h1 class="hero-h1">Golf Holidays Worldwide</h1>
+        <p class="hero-sub">Crafting memorable golf holidays tailored to your exact needs.</p>
+        <div class="hero-cta-group">
+          <a href="#packages" class="btn btn-hero" id="hero-cta">Explore Golf Holidays</a>
+        </div>
+      </div>
+      
+      <a href="#packages" class="hero-package-info reveal-left" id="hero-package-info" aria-label="View current destination package">
+        <div class="hpi-header">
+          <div class="hpi-slide-indicator" id="hpi-slide-indicator">01 / 04</div>
+          <div class="hpi-controls">
+            <button class="hpi-btn" id="hpi-prev" aria-label="Previous slide" tabindex="-1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="hpi-btn" id="hpi-next" aria-label="Next slide" tabindex="-1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="hpi-text-wrapper" id="hpi-text-wrapper">
+          <div class="hpi-title" id="hpi-title">HAMILTON ISLAND</div>
+          <div class="hpi-tagline" id="hpi-tagline">JAW-DROPPING VIEWS + ULTIMATE ISLAND LUXURY</div>
+          <div class="hpi-pkg-name" id="hpi-pkg-name">Qualia Golf Experience, Australia</div>
+          <div class="hpi-pkg-price">FROM <strong id="hpi-pkg-price">$2,195</strong> PER PERSON</div>
+          <div class="hpi-cta">Explore Now &rarr;</div>
+        </div>
+        <div class="hpi-progress-track">
+          <div class="hpi-progress-bar" id="hpi-progress-bar"></div>
+        </div>
+      </a>
+
+      <div class="scroll-indicator" aria-hidden="true"><span class="scroll-dot"></span></div>
+    </section>
+
+    <!-- INTRO -->
+    <section id="intro" aria-labelledby="intro-heading">
+      <div class="container">
+        <div class="intro-grid">
+          <div class="intro-copy reveal">
+            <span class="section-eyebrow">Our Story</span>
+            <h2 id="intro-heading" class="section-h2">Welcome to Golf Explorer!</h2>
+            <p class="body-lg">We are the Australian golf travel specialists, passionate about crafting memorable golf holidays for our clients. Whether you're looking for a golf holiday to Australia or New Zealand, or indeed to any other country in the world, we can tailor a package to suit your needs.</p>
+            <p class="body-lg">Our personalised and dedicated service is what brings clients back year after year.</p>
+            <a href="#packages" class="btn btn-outline" id="intro-cta">View Our Packages</a>
+          </div>
+          <div class="intro-card-wrap reveal reveal-delay-1">
+            <article class="endorsement-card" aria-label="PGA Director endorsement">
+              <div class="endorsement-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+              <blockquote class="endorsement-quote">
+                <p>"I'd recommend Golf Explorer's services to anyone. You and your team did a terrific job. It was one of the best adventures our group has ever enjoyed!"</p>
+              </blockquote>
+              <footer class="endorsement-author">
+                <div class="author-avatar" aria-hidden="true">JS</div>
+                <div class="author-info">
+                  <strong>Jim Smith</strong>
+                  <span>PGA Director of Golf, The Philadelphia Cricket Club</span>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section id="packages" aria-labelledby="packages-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Curated Journeys</span>
+          <h2 id="packages-heading" class="section-h2">Featured Destinations &amp; Curated Packages</h2>
+          <p class="section-sub">From the pristine fairways of New Zealand to the storied links of Scotland — your perfect golf escape awaits.</p>
+        </div>
+        <!-- Category A -->
+        <div class="packages-category reveal">
+          <h3 class="category-label">NZ Golf Holidays</h3>
+          <div class="packages-grid">
+            <article class="package-card" aria-label="North Island Golf Tour, New Zealand">
+              <div class="card-image card-img-1" role="img" aria-label="New Zealand golf course landscape"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 Nights</span>
+                  <span class="card-badge">New Zealand</span>
+                </div>
+                <h3 class="card-title">North Island Golf Tour, New Zealand</h3>
+                <p class="card-price">from <strong>AU$3,598.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+            <article class="package-card" aria-label="Queenstown Lakefront Villa Golf Retreat">
+              <div class="card-image card-img-2" role="img" aria-label="Queenstown lakefront golf retreat"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 Nights</span>
+                  <span class="card-badge">New Zealand</span>
+                </div>
+                <h3 class="card-title">Queenstown Lakefront Villa Golf Retreat</h3>
+                <p class="card-price">from <strong>AU$4,365.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <!-- Category B -->
+        <div class="packages-category reveal">
+          <h3 class="category-label">Adelaide Golf &amp; Wine</h3>
+          <div class="packages-grid">
+            <article class="package-card" aria-label="The Barossa Beauty golf package">
+              <div class="card-image card-img-3" role="img" aria-label="Barossa Valley vineyard golf course"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 Nights</span>
+                  <span class="card-badge">Adelaide</span>
+                </div>
+                <h3 class="card-title">The Barossa Beauty</h3>
+                <p class="card-price">from <strong>AU$3,588.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+            <article class="package-card" aria-label="LIV Golf Experience package">
+              <div class="card-image card-img-4" role="img" aria-label="LIV Golf Experience Adelaide"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 Nights</span>
+                  <span class="card-badge">Adelaide</span>
+                </div>
+                <h3 class="card-title">LIV Golf Experience</h3>
+                <p class="card-price">from <strong>AU$3,245.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <!-- Category C -->
+        <div class="packages-category reveal">
+          <h3 class="category-label">Australian Golf Breaks</h3>
+          <div class="packages-grid packages-grid--3">
+            <article class="package-card" aria-label="Barnbougle Golf Break">
+              <div class="card-image card-img-5" role="img" aria-label="Barnbougle Dunes golf course Tasmania"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 Nights</span>
+                  <span class="card-badge">Australia</span>
+                </div>
+                <h3 class="card-title">Barnbougle Golf Break</h3>
+                <p class="card-price">from <strong>AU$1,068.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+            <article class="package-card" aria-label="Hamilton Island Golf Break">
+              <div class="card-image card-img-6" role="img" aria-label="Hamilton Island golf course Queensland"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4 Nights</span>
+                  <span class="card-badge">Australia</span>
+                </div>
+                <h3 class="card-title">Hamilton Island Golf Break</h3>
+                <p class="card-price">from <strong>AU$1,228.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+            <article class="package-card" aria-label="Mornington Peninsula Short Break">
+              <div class="card-image card-img-7" role="img" aria-label="Mornington Peninsula golf course Victoria"></div>
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 Nights</span>
+                  <span class="card-badge">Australia</span>
+                </div>
+                <h3 class="card-title">Mornington Peninsula Short</h3>
+                <p class="card-price">from <strong>AU$769.00</strong> <span>per person</span></p>
+                <a href="#contact" class="btn btn-card">Enquire Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Why Golf Explorer</span>
+          <h2 id="features-heading" class="section-h2">The Explorer's Promise</h2>
+        </div>
+        <div class="features-grid perspective-container">
+          <article class="feature-card reveal-3d" aria-labelledby="feat1">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 id="feat1" class="feature-title">Where can we take you?</h3>
+            <p class="feature-body">With the growing popularity of golf vacations, experience golf breaks in most countries. From New Zealand, Fiji and Vietnam to South Africa, Canada and the links of Scotland and Ireland, we can arrange the most spectacular golf getaways.</p>
+          </article>
+          <article class="feature-card reveal-3d reveal-delay-1" aria-labelledby="feat2">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3 id="feat2" class="feature-title">Play the best golf courses…</h3>
+            <p class="feature-body">Whether you're playing the iconic (Pebble Beach, TPC Sawgrass, Old Course St. Andrews) or the spectacular (Cape Kidnappers, Natadola Bay), the world of golf course design is constantly evolving.</p>
+          </article>
+          <article class="feature-card reveal-3d reveal-delay-2" aria-labelledby="feat3">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3 id="feat3" class="feature-title">Fully Tailored Itineraries</h3>
+            <p class="feature-body">We don't believe in one-size-fits-all. From exclusive tee times and luxury transfers to private dining reservations, every aspect of your holiday is perfectly customized to suit your group's unique preferences.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS — infinite marquee slider -->
+    <section id="reviews" aria-labelledby="reviews-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Client Stories</span>
+          <h2 id="reviews-heading" class="section-h2">Voices From the Fairway</h2>
+        </div>
+      </div>
+
+      <!-- Full-width marquee — outside container so cards bleed to edges -->
+      <div class="reviews-marquee" aria-label="Scrolling client reviews">
+        <div class="reviews-track" id="reviews-track">
+
+          <!-- ── ORIGINAL SET (read by screen readers) ── -->
+          <article class="review-card" aria-label="Client review from Michael Johnson">
+            <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Absolutely seamless from start to finish. The courses were world-class and the accommodations were beyond our expectations. Golf Explorer truly delivers on its promise."</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">MJ</div>
+              <div><strong>Michael Johnson</strong><span>Sydney, Australia</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-label="Client review from Sarah Richardson">
+            <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Our group of 12 golfers had the time of our lives in Scotland. Every detail was handled with care. We'll be back for the New Zealand tour without a doubt!"</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">SR</div>
+              <div><strong>Sarah Richardson</strong><span>Melbourne, Australia</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-label="Client review from Jim Smith">
+            <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"I'd recommend Golf Explorer's services to anyone. You and your team did a terrific job. It was one of the best adventures our group has ever enjoyed!"</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">JS</div>
+              <div><strong>Jim Smith</strong><span>PGA Director of Golf, Philadelphia Cricket Club</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-label="Client review from David Park">
+            <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"The Barnbougle experience blew us away. The raw Tasmanian coastline, the wind, the challenge — Golf Explorer arranged everything flawlessly. Already planning our next trip!"</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">DP</div>
+              <div><strong>David Park</strong><span>Perth, Australia</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-label="Client review from Emma Clarke">
+            <div class="review-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"From the very first call, the team at Golf Explorer listened to exactly what we wanted. Cape Kidnappers exceeded every expectation. Truly a world-class operation."</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">EC</div>
+              <div><strong>Emma Clarke</strong><span>Brisbane, Australia</span></div>
+            </footer>
+          </article>
+
+          <!-- ── DUPLICATE SET for seamless loop (hidden from AT) ── -->
+          <article class="review-card" aria-hidden="true">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Absolutely seamless from start to finish. The courses were world-class and the accommodations were beyond our expectations. Golf Explorer truly delivers on its promise."</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">MJ</div>
+              <div><strong>Michael Johnson</strong><span>Sydney, Australia</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-hidden="true">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"Our group of 12 golfers had the time of our lives in Scotland. Every detail was handled with care. We'll be back for the New Zealand tour without a doubt!"</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">SR</div>
+              <div><strong>Sarah Richardson</strong><span>Melbourne, Australia</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-hidden="true">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"I'd recommend Golf Explorer's services to anyone. You and your team did a terrific job. It was one of the best adventures our group has ever enjoyed!"</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">JS</div>
+              <div><strong>Jim Smith</strong><span>PGA Director of Golf, Philadelphia Cricket Club</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-hidden="true">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"The Barnbougle experience blew us away. The raw Tasmanian coastline, the wind, the challenge — Golf Explorer arranged everything flawlessly. Already planning our next trip!"</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">DP</div>
+              <div><strong>David Park</strong><span>Perth, Australia</span></div>
+            </footer>
+          </article>
+
+          <article class="review-card" aria-hidden="true">
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-text">"From the very first call, the team at Golf Explorer listened to exactly what we wanted. Cape Kidnappers exceeded every expectation. Truly a world-class operation."</p>
+            <footer class="review-author">
+              <div class="author-avatar small" aria-hidden="true">EC</div>
+              <div><strong>Emma Clarke</strong><span>Brisbane, Australia</span></div>
+            </footer>
+          </article>
+
+        </div><!-- /.reviews-track -->
+      </div><!-- /.reviews-marquee -->
+    </section>
+
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="newsletter-inner reveal">
+          <div class="newsletter-copy reveal-left">
+            <span class="section-eyebrow eyebrow-light">Stay Connected</span>
+            <h2 id="newsletter-heading" class="newsletter-h2">Subscribe for news &amp; promotions</h2>
+            <p class="newsletter-sub">Be the first to receive exclusive golf travel deals, destination guides, and curated package launches.</p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form" novalidate aria-label="Newsletter subscription form">
+            <div class="form-group">
+              <label for="subscriber-name" class="sr-only">Full Name</label>
+              <input type="text" id="subscriber-name" name="name" placeholder="Your Name" autocomplete="name" required aria-required="true" />
+            </div>
+            <div class="form-group">
+              <label for="subscriber-email" class="sr-only">Email Address</label>
+              <input type="email" id="subscriber-email" name="email" placeholder="Your Email Address" autocomplete="email" required aria-required="true" />
+            </div>
+            <button type="submit" class="btn btn-gold" id="subscribe-btn">
+              Subscribe
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </form>
+          <div id="form-success" class="form-success" role="alert" aria-live="polite" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Thank you! You're on the list.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOGS -->
+    <section id="blogs" aria-labelledby="blogs-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Golf Insights</span>
+          <h2 id="blogs-heading" class="section-h2">From Our Golf Blog</h2>
+          <p class="section-sub">Expert guides, destination spotlights, and tips from our travel specialists.</p>
+        </div>
+        <div class="blogs-grid">
+          <div class="blog-wrapper reveal">
+            <article class="blog-card" aria-label="Blog: Top 10 Golf Courses">
+              <div class="blog-image blog-img-1" role="img" aria-label="Pebble Beach golf course California"></div>
+              <div class="blog-body">
+                <span class="blog-tag">Destinations</span>
+                <h3 class="blog-title">Top 10 Golf Courses You Must Play Before You Die</h3>
+                <p class="blog-excerpt">From Pebble Beach to the Old Course at St. Andrews, we count down the bucket-list rounds every golfer dreams of playing.</p>
+                <a href="#" class="blog-link">Read More &rarr;</a>
+              </div>
+            </article>
+          </div>
+          <div class="blog-wrapper reveal reveal-delay-1">
+            <article class="blog-card" aria-label="Blog: New Zealand Golf">
+              <div class="blog-image blog-img-2" role="img" aria-label="New Zealand golf holiday landscape"></div>
+              <div class="blog-body">
+                <span class="blog-tag">New Zealand</span>
+                <h3 class="blog-title">Why New Zealand is the World's Best Golf Holiday Destination</h3>
+                <p class="blog-excerpt">Cape Kidnappers. Kauri Cliffs. The Kinloch Club. Discover why discerning golfers keep returning to the Land of the Long White Cloud.</p>
+                <a href="#" class="blog-link">Read More &rarr;</a>
+              </div>
+            </article>
+          </div>
+          <div class="blog-wrapper reveal reveal-delay-2">
+            <article class="blog-card" aria-label="Blog: Adelaide Golf and Wine">
+              <div class="blog-image blog-img-3" role="img" aria-label="Adelaide wine and golf landscape"></div>
+              <div class="blog-body">
+                <span class="blog-tag">Adelaide</span>
+                <h3 class="blog-title">Golf &amp; Wine: The Ultimate Adelaide &amp; Barossa Valley Experience</h3>
+                <p class="blog-excerpt">Combine world-class golf with South Australia's legendary wine regions for the perfect indulgent escape.</p>
+                <a href="#" class="blog-link">Read More &rarr;</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact" role="contentinfo">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="#hero" class="footer-brand" aria-label="Golf Explorer – Home">
+              <img src="images/image_transparent.png" alt="Golf Explorer Logo" class="brand-logo footer-brand-logo" />
+            </a>
+            <p class="footer-tagline">Crafting memorable golf holidays since 1998.</p>
+            <p class="footer-licence">TTA 208954 &nbsp;|&nbsp; Travel Agent Licence</p>
+            <div class="footer-accred-logos">
+              <img src="images/iagto-transparent.png" alt="IAGTO The Global Golf Tourism Organisation" class="footer-accred-img" />
+              <img src="images/tcf-transparent.png" alt="TCF Travel Compensation Fund Participant" class="footer-accred-img" />
+              <img src="https://www.golfexplorer.com.au/images/tourwriter_logo_sm_white_2.png" alt="TourWriter Tour Operator Software" class="footer-accred-img" />
+            </div>
+          </div>
+          <nav class="footer-col" aria-label="Footer navigation">
+            <h4 class="footer-col-title">Navigation</h4>
+            <ul role="list" class="footer-links">
+              <li><a href="#intro">About Us</a></li>
+              <li><a href="#packages">Golf Packages</a></li>
+              <li><a href="#reviews">Reviews</a></li>
+              <li><a href="#blogs">Blog</a></li>
+              <li><a href="#">Sitemap</a></li>
+              <li><a href="#">Privacy &amp; Disclaimer</a></li>
+            </ul>
+          </nav>
+          <address class="footer-col" aria-label="Contact information">
+            <h4 class="footer-col-title">Contact Us</h4>
+            <ul role="list" class="footer-links footer-contact">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.1 19.79 19.79 0 0 1 1.58 3.54a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.62-1.62a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2z"/></svg>
+                <a href="tel:+61883764495">+61 8 8376 4495</a>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:info@golfexplorer.com.au">info@golfexplorer.com.au</a>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Adelaide, South Australia</span>
+              </li>
+            </ul>
+          </address>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Follow Us</h4>
+            <div class="social-links" aria-label="Social media links">
+              <a href="#" class="social-icon" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="#" class="social-icon" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+              <a href="#" class="social-icon" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+              <a href="#" class="social-icon" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; <span id="footer-year"></span> Golf Explorer. All rights reserved. | TTA 208954 | Travel Agent Licence</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+/**
+ * Golf Explorer — script.js
+ * Vanilla JS — Pure ES6+, Zero Dependencies
+ * Features:
+ *   1. Sticky header state transition (transparent → solid)
+ *   2. Mobile hamburger menu toggle
+ *   3. Scroll-reveal animations via IntersectionObserver
+ *   4. Mobile menu: close on link click
+ *   5. Newsletter form validation + success feedback
+ *   6. Dynamic footer copyright year
+ *   7. Smooth parallax nudge on hero scroll
+ */
+
+(function () {
+  'use strict';
+
+  /* ── Helpers ───────────────────────────────────────────── */
+  const qs  = (sel, ctx = document) => ctx.querySelector(sel);
+  const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+  /* ── 0. HERO SLIDER ────────────────────────────────────── */
+  const heroSlides = [
+    {
+      image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80',
+      tagline: 'JAW-DROPPING VIEWS + ULTIMATE ISLAND LUXURY',
+      title: 'HAMILTON ISLAND',
+      pkgName: 'Qualia Golf Experience, Australia',
+      price: '$2,195'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1920&q=80',
+      tagline: 'SPECTACULAR CLIFFTOP LINKS GOLF',
+      title: 'CAPE KIDNAPPERS',
+      pkgName: 'North Island Golf Tour, New Zealand',
+      price: '$3,598'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1920&q=80',
+      tagline: 'TROPICAL PARADISE & WORLD-CLASS GOLF',
+      title: 'FIJI ISLANDS',
+      pkgName: 'InterContinental Fiji Golf Retreat',
+      price: '$2,450'
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80',
+      tagline: 'MAJESTIC ALPINE SCENERY',
+      title: 'QUEENSTOWN',
+      pkgName: 'Queenstown Lakefront Villa Golf Retreat',
+      price: '$4,365'
+    }
+  ];
+
+  const sliderContainer = qs('#hero-slider');
+  const hpiPanel = qs('#hero-package-info');
+  const hpiTextWrapper = qs('#hpi-text-wrapper');
+  const hpiTagline = qs('#hpi-tagline');
+  const hpiTitle = qs('#hpi-title');
+  const hpiPkgName = qs('#hpi-pkg-name');
+  const hpiPkgPrice = qs('#hpi-pkg-price');
+  const hpiIndicator = qs('#hpi-slide-indicator');
+  const hpiProgressBar = qs('#hpi-progress-bar');
+  const btnPrev = qs('#hpi-prev');
+  const btnNext = qs('#hpi-next');
+  
+  if (sliderContainer && hpiPanel) {
+    // Inject background slides
+    sliderContainer.innerHTML = heroSlides.map((slide, i) => 
+      `<div class="hero-slide ${i === 0 ? 'active' : ''}" style="background-image: url('${slide.image}')"></div>`
+    ).join('');
+    
+    const slideEls = qsa('.hero-slide', sliderContainer);
+    let currentSlide = 0;
+    let isTransitioning = false;
+
+    const updateInfoBox = (index) => {
+      const data = heroSlides[index];
+      if (hpiTagline) hpiTagline.textContent = data.tagline;
+      if (hpiTitle) hpiTitle.textContent = data.title;
+      if (hpiPkgName) hpiPkgName.textContent = data.pkgName;
+      if (hpiPkgPrice) hpiPkgPrice.textContent = data.price;
+      if (hpiIndicator) hpiIndicator.textContent = `0${index + 1} / 0${heroSlides.length}`;
+    };
+
+    // Initial setup
+    updateInfoBox(0);
+    hpiProgressBar.classList.add('is-animating');
+
+    // Proceed to next slide automatically when the progress bar animation finishes
+    hpiProgressBar.addEventListener('animationend', () => {
+      goToSlide((currentSlide + 1) % heroSlides.length);
+    });
+
+    const goToSlide = (index) => {
+      if (isTransitioning || index === currentSlide) return;
+      isTransitioning = true;
+
+      // Swap background
+      slideEls[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slideEls[currentSlide].classList.add('active');
+
+      // Animate text out
+      hpiTextWrapper.classList.add('hpi-animating-out');
+      
+      // Reset progress bar immediately to stop animation
+      hpiProgressBar.classList.remove('is-animating');
+      void hpiProgressBar.offsetWidth; // trigger reflow
+
+      setTimeout(() => {
+        // Update content while hidden
+        updateInfoBox(currentSlide);
+        
+        // Prepare to animate in
+        hpiTextWrapper.classList.remove('hpi-animating-out');
+        hpiTextWrapper.classList.add('hpi-animating-in');
+        
+        requestAnimationFrame(() => {
+          hpiTextWrapper.classList.remove('hpi-animating-in');
+          // Restart progress bar
+          hpiProgressBar.classList.add('is-animating');
+          isTransitioning = false;
+        });
+      }, 400); // Wait for fade out to complete
+    };
+
+    // Manual Controls
+    if (btnPrev) btnPrev.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length);
+    });
+    
+    if (btnNext) btnNext.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToSlide((currentSlide + 1) % heroSlides.length);
+    });
+  }
+
+  /* ── 1. STICKY HEADER ──────────────────────────────────── */
+  const header = qs('#site-header');
+
+  function updateHeader() {
+    if (!header) return;
+    const scrolled = window.scrollY > 40;
+    header.classList.toggle('header-scrolled',     scrolled);
+    header.classList.toggle('header-transparent', !scrolled);
+  }
+
+  // Initialise
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  /* ── 2. MOBILE HAMBURGER MENU ──────────────────────────── */
+  const hamburger  = qs('#hamburger-btn');
+  const mobileMenu = qs('#mobile-menu');
+
+  function openMenu() {
+    mobileMenu.classList.add('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  function toggleMenu() {
+    const isOpen = mobileMenu.classList.contains('is-open');
+    isOpen ? closeMenu() : openMenu();
+  }
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Close when any mobile link is clicked
+    qsa('.mobile-link, .mobile-cta, .mobile-phone', mobileMenu).forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+        closeMenu();
+        hamburger.focus();
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!header.contains(e.target) && mobileMenu.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  }
+
+  /* ── 3. SCROLL-REVEAL (IntersectionObserver) ───────────── */
+  // Reveal elements on scroll
+  const revealEls = qsa('.reveal, .reveal-3d, .reveal-left');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -48px 0px'
+      }
+    );
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else {
+    // Fallback: show all immediately if no IntersectionObserver support
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  /* ── 4. HERO PARALLAX (subtle) ─────────────────────────── */
+  const heroSection = qs('#hero');
+
+  function onHeroScroll() {
+    if (!heroSection) return;
+    const scrollY = window.scrollY;
+    const heroH   = heroSection.offsetHeight;
+    if (scrollY > heroH) return;
+    // Shift the background slightly slower than scroll
+    const shift = scrollY * 0.30;
+    heroSection.style.backgroundPositionY = `calc(30% + ${shift}px)`;
+  }
+
+  // Only apply parallax if not prefers-reduced-motion
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', onHeroScroll, { passive: true });
+  }
+
+  /* ── 5. NEWSLETTER FORM ─────────────────────────────────── */
+  const form        = qs('#newsletter-form');
+  const successMsg  = qs('#form-success');
+  const nameInput   = qs('#subscriber-name');
+  const emailInput  = qs('#subscriber-email');
+
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  }
+
+  function setError(input, isError) {
+    input.classList.toggle('input-error', isError);
+    input.setAttribute('aria-invalid', isError ? 'true' : 'false');
+  }
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let valid = true;
+
+      if (!nameInput.value.trim()) {
+        setError(nameInput, true);
+        valid = false;
+      } else {
+        setError(nameInput, false);
+      }
+
+      if (!validateEmail(emailInput.value)) {
+        setError(emailInput, true);
+        valid = false;
+      } else {
+        setError(emailInput, false);
+      }
+
+      if (!valid) {
+        // Focus first invalid field
+        form.querySelector('.input-error')?.focus();
+        return;
+      }
+
+      // Simulate async submission
+      const submitBtn = qs('#subscribe-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Subscribing…';
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        if (successMsg) successMsg.hidden = false;
+      }, 800);
+    });
+
+    // Clear error on input
+    [nameInput, emailInput].forEach(input => {
+      if (!input) return;
+      input.addEventListener('input', () => setError(input, false));
+    });
+  }
+
+  /* ── 6. FOOTER COPYRIGHT YEAR ──────────────────────────── */
+  const yearEl = qs('#footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ── 7. SMOOTH SCROLL FOR ANCHOR LINKS ─────────────────── */
+  qsa('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = qs(anchor.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const headerOffset = parseInt(
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--header-h') || '72', 10
+      );
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  /* ── 8. PACKAGE CARD TILT (subtle luxury micro-interaction) */
+  qsa('.package-card, .feature-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const rect   = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.transform = `translateY(-6px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 4).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  /* ── 9. BLOG CARD 360 SPIN ─────────────────────────────── */
+  qsa('.blog-wrapper').forEach(wrapper => {
+    const card = qs('.blog-card', wrapper);
+    if (!card) return;
+    
+    wrapper.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!card.classList.contains('is-spinning')) {
+        card.classList.add('is-spinning');
+      }
+    });
+    
+    card.addEventListener('animationend', (e) => {
+      if (e.animationName === 'card-spin-360') {
+        card.classList.remove('is-spinning');
+      }
+    });
+  });
+
+})();
+
+</script>
+</body>
+</html>
+
