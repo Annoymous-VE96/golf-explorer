@@ -271,6 +271,12 @@ strong { font-weight: 600; }
 .packages-category { margin-bottom: var(--space-8); }
 .packages-category:last-child { margin-bottom: 0; }
 .category-label { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-deep); border-left: 3px solid var(--accent-color); padding-left: var(--space-4); margin-bottom: var(--space-8); display: flex; align-items: center; }
+
+@media (min-width: 992px) {
+  .packages-category { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-8); align-items: start; }
+  .category-label { margin-bottom: 0; margin-top: var(--space-3); }
+}
+
 /* Ensure headings and subtext read clearly on the linen background */
 #packages .section-h2 { color: var(--primary-deep); }
 #packages .section-sub { color: #4a4438; }
@@ -424,16 +430,15 @@ strong { font-weight: 600; }
 /* 14. BLOGS */
 #blogs { padding-block: var(--section-pad); background-color: var(--surface-white); }
 .blogs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
-.blog-wrapper { height: 100%; perspective: 1000px; }
-.blog-card { height: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background-color: var(--surface-white); display: flex; flex-direction: column; transform-style: preserve-3d; transition: box-shadow var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out); }
-
-@keyframes card-spin-360 {
-  0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(360deg); }
-}
-
-.blog-card.is-spinning { animation: card-spin-360 0.9s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: var(--shadow-card-hover); border-color: var(--border-card); }
-.blog-image { height: 200px; background-size: cover; background-position: center; }
+.blog-wrapper { height: 100%; perspective: 1200px; }
+.blog-card { height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.blog-wrapper:hover .blog-card { transform: rotateY(180deg); }
+.blog-face { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); background-color: var(--surface-white); display: flex; flex-direction: column; -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: box-shadow var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out); }
+.blog-face-front { position: relative; height: 100%; z-index: 2; }
+.blog-face-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotateY(180deg); z-index: 1; }
+.blog-wrapper:hover .blog-face { box-shadow: var(--shadow-card-hover); border-color: var(--border-card); }
+.blog-image { height: 200px; background-size: cover; background-position: center; transition: transform var(--dur-slow) var(--ease-out); will-change: transform; }
+.blog-wrapper:hover .blog-image { transform: scale(1.06); }
 /* Blog card images — Unsplash CDN */
 .blog-img-1 { background-color: #1a4a3a; background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=800&q=80'); background-position: center 40%; }
 .blog-img-2 { background-color: #2a5a40; background-image: url('https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?auto=format&fit=crop&w=800&q=80'); }
@@ -743,7 +748,7 @@ strong { font-weight: 600; }
         <!-- Category C -->
         <div class="packages-category reveal">
           <h3 class="category-label">Australian Golf Breaks</h3>
-          <div class="packages-grid packages-grid--3">
+          <div class="packages-grid">
             <article class="package-card" aria-label="Barnbougle Golf Break">
               <div class="card-image card-img-5" role="img" aria-label="Barnbougle Dunes golf course Tasmania"></div>
               <div class="card-body">
@@ -765,18 +770,6 @@ strong { font-weight: 600; }
                 </div>
                 <h3 class="card-title">Hamilton Island Golf Break</h3>
                 <p class="card-price">from <strong>AU$1,228.00</strong> <span>per person</span></p>
-                <a href="#contact" class="btn btn-card">Enquire Now</a>
-              </div>
-            </article>
-            <article class="package-card" aria-label="Mornington Peninsula Short Break">
-              <div class="card-image card-img-7" role="img" aria-label="Mornington Peninsula golf course Victoria"></div>
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="card-duration"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 Nights</span>
-                  <span class="card-badge">Australia</span>
-                </div>
-                <h3 class="card-title">Mornington Peninsula Short</h3>
-                <p class="card-price">from <strong>AU$769.00</strong> <span>per person</span></p>
                 <a href="#contact" class="btn btn-card">Enquire Now</a>
               </div>
             </article>
@@ -970,34 +963,67 @@ strong { font-weight: 600; }
         <div class="blogs-grid">
           <div class="blog-wrapper reveal">
             <article class="blog-card" aria-label="Blog: Top 10 Golf Courses">
-              <div class="blog-image blog-img-1" role="img" aria-label="Pebble Beach golf course California"></div>
-              <div class="blog-body">
-                <span class="blog-tag">Destinations</span>
-                <h3 class="blog-title">Top 10 Golf Courses You Must Play Before You Die</h3>
-                <p class="blog-excerpt">From Pebble Beach to the Old Course at St. Andrews, we count down the bucket-list rounds every golfer dreams of playing.</p>
-                <a href="#" class="blog-link">Read More &rarr;</a>
+              <div class="blog-face blog-face-front">
+                <div class="blog-image blog-img-1" role="img" aria-label="Pebble Beach golf course California"></div>
+                <div class="blog-body">
+                  <span class="blog-tag">Destinations</span>
+                  <h3 class="blog-title">Top 10 Golf Courses You Must Play Before You Die</h3>
+                  <p class="blog-excerpt">From Pebble Beach to the Old Course at St. Andrews, we count down the bucket-list rounds every golfer dreams of playing.</p>
+                  <a href="#" class="blog-link" tabindex="-1">Read More &rarr;</a>
+                </div>
+              </div>
+              <div class="blog-face blog-face-back" aria-hidden="true">
+                <div class="blog-image blog-img-1"></div>
+                <div class="blog-body">
+                  <span class="blog-tag">Destinations</span>
+                  <h3 class="blog-title">Top 10 Golf Courses You Must Play Before You Die</h3>
+                  <p class="blog-excerpt">From Pebble Beach to the Old Course at St. Andrews, we count down the bucket-list rounds every golfer dreams of playing.</p>
+                  <a href="#" class="blog-link">Read More &rarr;</a>
+                </div>
               </div>
             </article>
           </div>
           <div class="blog-wrapper reveal reveal-delay-1">
             <article class="blog-card" aria-label="Blog: New Zealand Golf">
-              <div class="blog-image blog-img-2" role="img" aria-label="New Zealand golf holiday landscape"></div>
-              <div class="blog-body">
-                <span class="blog-tag">New Zealand</span>
-                <h3 class="blog-title">Why New Zealand is the World's Best Golf Holiday Destination</h3>
-                <p class="blog-excerpt">Cape Kidnappers. Kauri Cliffs. The Kinloch Club. Discover why discerning golfers keep returning to the Land of the Long White Cloud.</p>
-                <a href="#" class="blog-link">Read More &rarr;</a>
+              <div class="blog-face blog-face-front">
+                <div class="blog-image blog-img-2" role="img" aria-label="New Zealand golf holiday landscape"></div>
+                <div class="blog-body">
+                  <span class="blog-tag">New Zealand</span>
+                  <h3 class="blog-title">Why New Zealand is the World's Best Golf Holiday Destination</h3>
+                  <p class="blog-excerpt">Cape Kidnappers. Kauri Cliffs. The Kinloch Club. Discover why discerning golfers keep returning to the Land of the Long White Cloud.</p>
+                  <a href="#" class="blog-link" tabindex="-1">Read More &rarr;</a>
+                </div>
+              </div>
+              <div class="blog-face blog-face-back" aria-hidden="true">
+                <div class="blog-image blog-img-2"></div>
+                <div class="blog-body">
+                  <span class="blog-tag">New Zealand</span>
+                  <h3 class="blog-title">Why New Zealand is the World's Best Golf Holiday Destination</h3>
+                  <p class="blog-excerpt">Cape Kidnappers. Kauri Cliffs. The Kinloch Club. Discover why discerning golfers keep returning to the Land of the Long White Cloud.</p>
+                  <a href="#" class="blog-link">Read More &rarr;</a>
+                </div>
               </div>
             </article>
           </div>
           <div class="blog-wrapper reveal reveal-delay-2">
             <article class="blog-card" aria-label="Blog: Adelaide Golf and Wine">
-              <div class="blog-image blog-img-3" role="img" aria-label="Adelaide wine and golf landscape"></div>
-              <div class="blog-body">
-                <span class="blog-tag">Adelaide</span>
-                <h3 class="blog-title">Golf &amp; Wine: The Ultimate Adelaide &amp; Barossa Valley Experience</h3>
-                <p class="blog-excerpt">Combine world-class golf with South Australia's legendary wine regions for the perfect indulgent escape.</p>
-                <a href="#" class="blog-link">Read More &rarr;</a>
+              <div class="blog-face blog-face-front">
+                <div class="blog-image blog-img-3" role="img" aria-label="Adelaide wine and golf landscape"></div>
+                <div class="blog-body">
+                  <span class="blog-tag">Adelaide</span>
+                  <h3 class="blog-title">Golf &amp; Wine: The Ultimate Adelaide &amp; Barossa Valley Experience</h3>
+                  <p class="blog-excerpt">Combine world-class golf with South Australia's legendary wine regions for the perfect indulgent escape.</p>
+                  <a href="#" class="blog-link" tabindex="-1">Read More &rarr;</a>
+                </div>
+              </div>
+              <div class="blog-face blog-face-back" aria-hidden="true">
+                <div class="blog-image blog-img-3"></div>
+                <div class="blog-body">
+                  <span class="blog-tag">Adelaide</span>
+                  <h3 class="blog-title">Golf &amp; Wine: The Ultimate Adelaide &amp; Barossa Valley Experience</h3>
+                  <p class="blog-excerpt">Combine world-class golf with South Australia's legendary wine regions for the perfect indulgent escape.</p>
+                  <a href="#" class="blog-link">Read More &rarr;</a>
+                </div>
               </div>
             </article>
           </div>
@@ -1408,24 +1434,8 @@ strong { font-weight: 600; }
     });
   });
 
-  /* ── 9. BLOG CARD 360 SPIN ─────────────────────────────── */
-  qsa('.blog-wrapper').forEach(wrapper => {
-    const card = qs('.blog-card', wrapper);
-    if (!card) return;
-    
-    wrapper.addEventListener('mouseenter', () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      if (!card.classList.contains('is-spinning')) {
-        card.classList.add('is-spinning');
-      }
-    });
-    
-    card.addEventListener('animationend', (e) => {
-      if (e.animationName === 'card-spin-360') {
-        card.classList.remove('is-spinning');
-      }
-    });
-  });
+  /* ── 9. BLOG CARD EFFECTS ──────────────────────────────── */
+  // Moved to pure CSS (see .blog-card:hover in styles)
 
 })();
 
