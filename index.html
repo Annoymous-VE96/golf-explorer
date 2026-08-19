@@ -194,7 +194,7 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
 /* ============================================================
    2. HERO
    ============================================================ */
-.hero{position:relative;min-height:92vh;display:flex;align-items:center;padding:144px 0 72px;overflow:hidden}
+.hero{position:relative;min-height:auto;display:flex;align-items:center;padding:116px 0 60px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
 .hero-bg::after{
@@ -205,34 +205,35 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
 .hero-in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);gap:56px;align-items:center;width:100%}
 .hero-copy{color:#fff;max-width:660px}
 .hero h1{color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.24)}
-.hero .lead{color:rgba(255,255,255,.9);text-shadow:0 1px 14px rgba(0,0,0,.28);max-width:52ch}
-.rating-chip{margin-bottom:26px;text-decoration:none}
+.hero .lead{color:rgba(255,255,255,.9);text-shadow:0 1px 14px rgba(0,0,0,.28);max-width:52ch;margin-top:16px}
+.hero .btn-row{margin-top:24px}
+.rating-chip{margin-bottom:18px;text-decoration:none}
 .rating-chip strong{font-weight:700}
-.trust-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.trust-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 @media(max-width:1000px){
   .hero-in{grid-template-columns:1fr;gap:40px}
-  .hero{padding:112px 0 52px;min-height:auto}
+  .hero{padding:100px 0 44px;min-height:auto}
 }
 
 /* form card */
-.form-card{padding:30px 28px 26px}
-.form-card h3{font-size:1.42rem;margin-bottom:6px}
-.form-sub{font-size:.86rem;margin:0 0 22px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.form-card{padding:26px 26px 22px}
+.form-card h3{font-size:1.34rem;margin-bottom:5px}
+.form-sub{font-size:.85rem;margin:0 0 16px}
+.field{margin-bottom:11px}
+.field label{display:block;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
 .field input,.field select,.field textarea{
-  width:100%;padding:10px 2px;border:0;border-bottom:1px solid rgba(255,255,255,.28);
+  width:100%;padding:8px 2px;border:0;border-bottom:1px solid rgba(255,255,255,.28);
   background:transparent;color:#fff;font-size:.97rem;border-radius:0;
   transition:border-color .2s;appearance:none;
 }
-.field textarea{resize:vertical;min-height:64px}
+.field textarea{resize:vertical;min-height:52px}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--accent-2)}
 .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.45)}
 .field select option{background:#1e1f16;color:#fff}
 .glass .form-card h3,.glass .field label{color:#fff}
 .glass .form-sub{color:rgba(255,255,255,.72)}
-.form-note{font-size:.78rem;text-align:center;margin:12px 0 0;color:rgba(255,255,255,.66)}
-.form-card .btn{width:100%;margin-top:8px}
+.form-note{font-size:.78rem;text-align:center;margin:10px 0 0;color:rgba(255,255,255,.66)}
+.form-card .btn{width:100%;margin-top:6px}
 .form-thanks{display:none;text-align:center;padding:40px 10px}
 .form-thanks svg{color:var(--accent-2);margin:0 auto 14px}
 .sent .form-body{display:none}
@@ -469,15 +470,6 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
 .sub-thanks{display:none;font-size:.95rem;color:var(--accent-2);margin:16px 0 0;font-weight:600}
 .subbed .sub-form,.subbed .sub-note{display:none}
 .subbed .sub-thanks{display:block}
-.dest-strip{
-  list-style:none;display:flex;flex-wrap:wrap;gap:9px;justify-content:center;
-  margin:34px 0 0;padding:30px 0 0;border-top:1px solid var(--border-dark);
-}
-.dest-strip li{
-  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:10px;
-  border:1px solid var(--border-dark);font-size:.83rem;color:rgba(255,255,255,.76);
-}
-.dest-strip svg{color:var(--accent-2)}
 @media(max-width:560px){.sub-form .btn{flex:1 1 100%}}
 
 /* ============================================================
@@ -1067,19 +1059,6 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
     </form>
     <p class="sub-note">No spam. Unsubscribe in one click.</p>
     <p class="sub-thanks">You are on the list. Deals land in your inbox a few times a year.</p>
-
-    <ul class="dest-strip">
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> Adelaide</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> Tasmania</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> New Zealand</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> Fiji</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> Vietnam</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> Scotland</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> Ireland</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> USA</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> South Africa</li>
-      <li><svg width="15" height="15"><use href="#i-pin"/></svg> 25+ in total</li>
-    </ul>
   </div>
 </section>
 
