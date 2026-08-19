@@ -41,7 +41,7 @@
   --border:rgba(142,132,57,.20);
   --border-dark:rgba(255,255,255,.14);
   --grad-light:linear-gradient(100deg,#a4933d 0%,#6d6425 100%);
-  --grad-dark:linear-gradient(100deg,#e2d68d 0%,#b0a44e 100%);
+  --grad-dark:linear-gradient(100deg,#f7edd0 0%,#e8d78f 45%,#d0bb68 100%);
   --r-btn:10px; --r-card:20px; --r-img:16px;
   --wrap:1240px;
   --sp:72px;
@@ -76,9 +76,25 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
   font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;
   letter-spacing:-.01em;
   background:var(--grad-light);-webkit-background-clip:text;background-clip:text;color:transparent;
-  padding-right:.04em;
+  /* background-clip:text paints ONLY inside the inline box, so any ink outside it is
+     invisible. This italic serif overhangs on every side (the 'g' tail swings left, so
+     it vanished whenever the run began a line). Padding grows the paint box; the matching
+     negative margins cancel the layout shift the horizontal padding would cause.
+     box-decoration-break:clone is required, otherwise padding-left applies only to the
+     run's FIRST line fragment and any later line still clips. */
+  padding:.06em .06em .2em .16em;
+  margin-left:-.16em;
+  margin-right:-.06em;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
 }
-.on-dark .hl,.dark .hl{background:var(--grad-dark);-webkit-background-clip:text;background-clip:text;color:transparent}
+.on-dark .hl,.dark .hl{
+  background:var(--grad-dark);-webkit-background-clip:text;background-clip:text;color:transparent;
+  /* a text-shadow would show THROUGH the transparent glyph and muddy it,
+     so separation comes from a drop-shadow that follows the letter shapes */
+  text-shadow:none;
+  filter:drop-shadow(0 2px 9px rgba(0,0,0,.5)) drop-shadow(0 1px 2px rgba(0,0,0,.32));
+}
 .lead{font-size:1.06rem;color:var(--muted);max-width:60ch;margin:20px 0 0}
 .on-dark .lead,.dark .lead{color:var(--muted-light)}
 
@@ -199,8 +215,8 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
 .hero-bg::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(12,14,8,.42) 0%,rgba(12,14,8,.34) 45%,rgba(12,14,8,.56) 100%),
-             radial-gradient(115% 90% at 22% 55%,rgba(10,12,6,.42) 0%,rgba(10,12,6,0) 62%);
+  background:linear-gradient(180deg,rgba(12,14,8,.46) 0%,rgba(12,14,8,.40) 45%,rgba(12,14,8,.58) 100%),
+             radial-gradient(120% 95% at 20% 52%,rgba(8,10,5,.55) 0%,rgba(8,10,5,0) 66%);
 }
 .hero-in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);gap:56px;align-items:center;width:100%}
 .hero-copy{color:#fff;max-width:660px}
@@ -466,7 +482,7 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
 .sub-form input::placeholder{color:rgba(255,255,255,.5)}
 .sub-form input:focus{outline:none;border-color:var(--accent-2)}
 .sub-form .btn{flex:0 0 auto}
-.sub-note{font-size:.79rem;color:rgba(255,255,255,.55);margin:14px 0 0}
+.sub-note{font-size:.79rem;color:rgba(255,255,255,.55);margin:22px 0 0}
 .sub-thanks{display:none;font-size:.95rem;color:var(--accent-2);margin:16px 0 0;font-weight:600}
 .subbed .sub-form,.subbed .sub-note{display:none}
 .subbed .sub-thanks{display:block}
@@ -585,7 +601,7 @@ h3{font-size:1.3rem;letter-spacing:-.02em}
 <!-- ============================================================
      SECTION 2 | HERO + LEAD FORM
      ============================================================ -->
-<section class="hero" id="top">
+<section class="hero on-dark" id="top">
   <div class="hero-bg">
     <img src="assets/img/hero.jpg" alt="Coastal links fairway running down to the sea on a bright morning" fetchpriority="high" width="2000" height="1143">
   </div>
